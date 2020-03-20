@@ -9,7 +9,8 @@ class App extends Component {
   state ={
     searchInp: '',
     input: '',
-    category: 'Country'
+    category: 'country',
+    categorySel: ''
   }
 
   handleInputChange = event => {
@@ -18,10 +19,34 @@ class App extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault()
-    this.setState({searchInp: this.state.input, input: ''})
+    this.setState({searchInp: this.state.input, input: '', category: '', categorySel: this.state.category})
   }
   handleSelectChange = event => {
-    this.setState({category: event.target.value})
+    this.setState({category: (event.target.value).toLowerCase()})
+  }
+  renderEmployees (cat) {
+    if(this.state.searchInp !== ''){
+    
+    return db.map((emp, i) => {
+     if(cat === 'department'){
+       if(emp.department === this.state.searchInp){
+         return <Card emp={emp} key={i} />
+       } 
+      }
+      else{
+        if (emp.country === this.state.searchInp) {
+          return <Card emp={emp} key={i} />
+        }
+      
+      }
+     })
+    }
+    else {
+     return db.map((emp, i) => {
+        
+      return <Card emp={emp} key={i} />
+    })
+    }
   }
  
   render(){
@@ -37,7 +62,7 @@ class App extends Component {
         handleSelectChange={this.handleSelectChange}
         />
         <div className="uk-row">
-        {db.map((emp, i ) => <Card emp={emp} key={i}/>)}
+        {this.renderEmployees(this.state.categorySel)}
         </div>
       </div>
       </>
