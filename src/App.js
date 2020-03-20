@@ -41,14 +41,11 @@ class App extends Component {
      })
     }
     else {
-     return db.map((emp, i) => {
-        
-      return <Card emp={emp} key={i} />
-    })
+     return db.map((emp, i) => <Card emp={emp} key={i} />)
     }
   }
  
-  render(){
+  render(){ 
     
     return(
       <>
@@ -60,7 +57,7 @@ class App extends Component {
         handleFormSubmit={this.handleFormSubmit}
         handleSelectChange={this.handleSelectChange}
         />
-        <div className="uk-row">
+        <div className="uk-row uk-margin-top">
         {this.renderEmployees(this.state.categorySel)}
         </div>
       </div>
