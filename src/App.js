@@ -37,7 +37,6 @@ class App extends Component {
         if (emp.country === this.state.searchInp) {
           return <Card emp={emp} key={i} />
         }
-      
       }
      })
     }
