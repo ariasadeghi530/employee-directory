@@ -25,8 +25,7 @@ class App extends Component {
     this.setState({category: (event.target.value).toLowerCase()})
   }
   renderEmployees (cat) {
-    if(this.state.searchInp !== ''){
-    
+    if(this.state.searchInp !== ''){ 
     return db.map((emp, i) => {
      if(cat === 'department'){
        if(emp.department === this.state.searchInp){
@@ -57,7 +56,7 @@ class App extends Component {
         handleFormSubmit={this.handleFormSubmit}
         handleSelectChange={this.handleSelectChange}
         />
-        <div className="uk-row uk-margin-top">
+        <div className="uk-row uk-margin-top uk-margin-bottom">
         {this.renderEmployees(this.state.categorySel)}
         </div>
       </div>
